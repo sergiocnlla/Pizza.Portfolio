@@ -11,16 +11,28 @@ struct App:View {
     @State var authenticated:Bool = false
     
     var body: some View {
-        VStack {
-            if !self.authenticated
-            {
-                Login(authenticated: self.$authenticated)
+        HStack {
+            VStack {
+                if !self.authenticated
+                {
+                    Login(authenticated: self.$authenticated)
+                }
+                else
+                {
+                    Catalog()
+                }
+                
+                Spacer(minLength: 0)
             }
-            else
-            {
-                Catalog()
-            }
+            .modifier(DarkModeViewModifier())
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
+            .edgesIgnoringSafeArea(.all)
+            
+            Spacer(minLength: 0)
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }

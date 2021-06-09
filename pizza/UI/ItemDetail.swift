@@ -17,7 +17,7 @@ struct ItemDetail:View {
             dataImage(image: item.image)
                 .resizable()
                 .scaledToFill()
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 1.6)
+                .frame(width: UIScreen.main.bounds.width, height: UIApplication.shared.windows.first?.safeAreaInsets.bottom == 0 ? UIScreen.main.bounds.height / 1.75 : UIScreen.main.bounds.height / 1.6)
             
             VStack(alignment:.leading, spacing: 20) {
                 VStack(alignment:.leading, spacing: 7) {
@@ -113,7 +113,6 @@ struct ItemDetail:View {
                             .foregroundColor(Color(hex: "#F7F7F7"))
                             .fontWeight(.bold)
                             .multilineTextAlignment(.center)
-                            .padding(.top, 22)
                     }
                     else if self.size == 2
                     {
@@ -122,7 +121,6 @@ struct ItemDetail:View {
                             .foregroundColor(Color(hex: "#F7F7F7"))
                             .fontWeight(.bold)
                             .multilineTextAlignment(.center)
-                            .padding(.top, 22)
                     }
                     else
                     {
@@ -131,10 +129,10 @@ struct ItemDetail:View {
                             .foregroundColor(Color(hex: "#F7F7F7"))
                             .fontWeight(.bold)
                             .multilineTextAlignment(.center)
-                            .padding(.top, 22)
                     }
                     Spacer()
                 }
+                .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.bottom == 0 ? 0 : 22)
             }
             .padding(.horizontal, 20)
             
@@ -146,7 +144,7 @@ struct ItemDetail:View {
                         .font(.system(size: 26))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
-                        .padding(.top, 20)
+                        .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.bottom == 0 ? 12.5 : 20)
                     Spacer(minLength: 0)
                 }
                 .frame(width: UIScreen.main.bounds.width, height: 160)
